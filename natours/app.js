@@ -7,7 +7,12 @@ const tours = JSON.parse(
 );
 
 app.get("/api/v1/tours", (req, res) => {
-	res.json(tours);
+	res.status(200).json({
+		status: "success",
+		data: {
+			tours: tours
+		},
+	});
 });
 
 const port = 3000;
