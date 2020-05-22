@@ -101,14 +101,26 @@ const deleteTour = (req, res) => {
 // USERS ROUT HANDLERS
 
 const getAllUsers = (req, res) => {
+	//
+};
+
+const createUser = (req, res) => {
+	//
+};
+
+const getUser = (req, res) => {
 	// 
 }
 
-const createNewUser = (req, res) => {
+const updateUser = (req, res) => {
 	// 
 }
 
-// ROUTES
+const deleteUser = (req, res) => {
+	// 
+}
+
+// TOURS ROUTES
 
 app.route('/api/v1/tours').get(getAllTours).post(createTour);
 
@@ -117,9 +129,16 @@ app.route('/api/v1/tours/:id')
 	.patch(updateTour)
 	.delete(deleteTour);
 
-app.route('/api/v1/users')
-	.get(getAllUsers)
-	.post(createNewUser);
+// USERS ROUTES
+
+app.route('/api/v1/users').get(getAllUsers).post(createUser);
+
+app.route('/api/v1/users/:id')
+	.get(getUser)
+	.patch(updateUser)
+	.delete(deleteUser);
+
+// RUN SERVER
 
 const port = 3000;
 
