@@ -98,6 +98,16 @@ const deleteTour = (req, res) => {
 	});
 };
 
+// USERS ROUT HANDLERS
+
+const getAllUsers = (req, res) => {
+	// 
+}
+
+const createNewUser = (req, res) => {
+	// 
+}
+
 // ROUTES
 
 app.route('/api/v1/tours').get(getAllTours).post(createTour);
@@ -106,6 +116,10 @@ app.route('/api/v1/tours/:id')
 	.get(getTour)
 	.patch(updateTour)
 	.delete(deleteTour);
+
+app.route('/api/v1/users')
+	.get(getAllUsers)
+	.post(createNewUser);
 
 const port = 3000;
 
