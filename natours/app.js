@@ -7,6 +7,8 @@ const morgan = require('morgan');
 
 app.use(morgan('dev'));
 
+
+
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -135,23 +137,28 @@ const deleteUser = (req, res) => {
 	});
 }
 
-// TOURS ROUTES
+// ROUTES
 
-app.route('/api/v1/tours').get(getAllTours).post(createTour);
+const toursRouter = new express.Router();
+const usersRouter = new express.Router();
 
-app.route('/api/v1/tours/:id')
+toursRouter.route('/').get(getAllTours).post(createTour);
+
+toursRouter.route('/:id')
 	.get(getTour)
 	.patch(updateTour)
 	.delete(deleteTour);
 
-// USERS ROUTES
+usersRouter.route('/').get(getAllUsers).post(createUser);
 
-app.route('/api/v1/users').get(getAllUsers).post(createUser);
-
-app.route('/api/v1/users/:id')
+usersRouter.route('/:id')
 	.get(getUser)
 	.patch(updateUser)
 	.delete(deleteUser);
+
+
+app.use('/api/v1/tours', toursRouter);
+app.use('/api/v1/users', usersRouter);
 
 // RUN SERVER
 
