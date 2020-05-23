@@ -1,6 +1,11 @@
 const express = require('express');
+const fs = require('fs');
 
 const router = new express.Router();
+
+const tours = JSON.parse(
+	fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
+);
 
 const getAllTours = (req, res) => {
 	res.status(200).json({
