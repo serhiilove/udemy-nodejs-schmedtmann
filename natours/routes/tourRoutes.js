@@ -3,6 +3,11 @@ const tourController = require('../controllers/tourController');
 
 const router = new express.Router();
 
+router.param('id', (req, res, next, val) => {
+	console.log(`Tour param is: ${val}`);
+	next();
+});
+
 router
 	.route('/')
 	.get(tourController.getAllTours)
