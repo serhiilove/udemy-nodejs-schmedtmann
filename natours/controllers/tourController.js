@@ -18,6 +18,16 @@ exports.checkId = (req, res, next, val) => {
 	next();
 }
 
+exports.checkBody = (req, res, next) => {
+	if (!req.body.name || !req.body.price)
+		return res.status(500).json({
+			status: 'bad request',
+			data: null,
+		});
+
+	next();
+}
+
 exports.getAllTours = (req, res) => {
 	res.status(200).json({
 		status: 'success',
@@ -50,7 +60,7 @@ exports.createTour = (req, res) => {
 
 	tours.push(newTour);
 	fs.writeFile(
-		`${__dirname}/dev-data/data/tours-simple.json`,
+		`${__dirname}/../dev-data/data/tours-simple.json`,
 		JSON.stringify(tours),
 		(err) => {
 			if (err) throw err;
