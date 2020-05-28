@@ -13,14 +13,8 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.json());
 
-app.use((req, res, next) => {
-	console.log('Hi from middleware 🌿');
-	next();
-});
-
 // ROUTES
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 
 module.exports = app;
-
