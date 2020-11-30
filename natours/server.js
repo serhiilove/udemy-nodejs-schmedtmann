@@ -12,6 +12,12 @@ mongoose.connect(DB, {
 	useFindAndModify: false
 }).then(() => console.log('DB connection succesful!'));
 
+const tourSchema = new mongoose.Schema({
+	name   : String,
+	rating : Number,
+	price  : Number
+})
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
