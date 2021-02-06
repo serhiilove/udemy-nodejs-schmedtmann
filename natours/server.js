@@ -5,18 +5,33 @@ const app = require('./app');
 dotenv.config({ path: './config.env' });
 console.log(process.env.NODE_ENV);
 
-const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.BATABASE_PASSWORD);
-mongoose.connect(DB, {
-	useNewUrlParser: true,
-	useCreateIndex: true,
-	useFindAndModify: false
-}).then(() => console.log('DB connection succesful!'));
+const DB = process.env.DATABASE.replace(
+	'<PASSWORD>',
+	process.env.BATABASE_PASSWORD
+);
+mongoose
+	.connect(DB, {
+		useNewUrlParser: true,
+		useCreateIndex: true,
+		useFindAndModify: false,
+	})
+	.then(() => console.log('DB connection succesful!'));
 
 const tourSchema = new mongoose.Schema({
-	name   : String,
-	rating : Number,
-	price  : Number
-})
+	name: {
+		type: String,
+		required: [true, 'A tour must have a name'],
+		unique: true,
+	},
+	rating: {
+		type: Number,
+		default: 4.5,
+	},
+	price: {
+		type: Number,
+		required: [true, 'A tour must have a price'],
+	},
+});
 
 const port = process.env.PORT || 3000;
 
